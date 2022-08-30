@@ -1,0 +1,16 @@
+.nav {
+  background-color: aqua;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  padding: 1rem;
+}
+li {
+  list-style: none;
+}
+.unorderedList {
+  display: flex;
+  justify-content: space-between;
+}
