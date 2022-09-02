@@ -19,13 +19,24 @@ export default function Content() {
       item: 'and everything nice',
     },
   ]);
+  const handleIdChange = (id) => {
+    const listitems = items.map((item) =>
+      item.id === id ? { ...item, checked: !item.checked } : item
+    );
+    setItems(listitems);
+  };
   return (
     <>
       <main>
         <ul>
           {items.map((myItems) => (
             <li className="item" key={myItems.id}>
-              <input type="checkbox" checked={myItems.checked} id="myinput" />
+              <input
+                type="checkbox"
+                checked={myItems.checked}
+                id="myinput"
+                onChange={() => handleIdChange(myItems.id)}
+              />
               <label htmlFor="myinput">{myItems.item}</label>
               <FaTrashAlt role="button" tabIndex="0" />
             </li>
