@@ -25,8 +25,8 @@ export default function Content() {
         <ul>
           {items.map((myItems) => (
             <li className="item" key={myItems.id}>
-              <input type="checkbox" checked={myItems.checked} />
-              <label>{myItems.item}</label>
+              <input type="checkbox" checked={myItems.checked} id="myinput" />
+              <label htmlFor="myinput">{myItems.item}</label>
               <FaTrashAlt role="button" tabIndex="0" />
             </li>
           ))}
