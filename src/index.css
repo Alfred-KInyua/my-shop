@@ -10,8 +10,15 @@ html {
 
 body {
   min-height: 100vh;
-  font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -57,14 +64,17 @@ footer {
   display: grid;
   place-content: center;
 }
+
 ul {
   width: 100%;
   list-style: none;
   padding: 0 0.25rem 0.25rem;
 }
+
 ul li::before {
   content: '\2008';
 }
+
 .item {
   display: flex;
   justify-content: flex-start;
@@ -73,9 +83,16 @@ ul li::before {
   margin: 0.25rem 0;
   background-color: rgb(212, 206, 206);
 }
+
 .item:first-child {
   margin: 0;
 }
+
+.item > label {
+  font-size: 0.75rem;
+  flex-grow: 1;
+}
+
 .item input[type='checkbox'] {
   text-align: center;
   width: 2.5rem;
@@ -84,13 +101,11 @@ ul li::before {
   cursor: pointer;
   margin-right: 0.5rem;
 }
+
 .item input[type='checkbox']:focus + label {
   text-decoration: underline;
 }
-.item > label {
-  font-size: 0.75rem;
-  flex-grow: 1;
-}
+
 .item svg {
   width: 48px;
   height: 36px;
@@ -98,6 +113,7 @@ ul li::before {
   color: steelblue;
   cursor: pointer;
 }
+
 .item svg:focus,
 .item svg:hover {
   color: red;
