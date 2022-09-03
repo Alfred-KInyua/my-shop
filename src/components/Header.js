@@ -1,11 +1,10 @@
 import React from 'react';
 
-export default function Header() {
+const Header = ({ title }) => {
   return (
-    <>
-      <header>
-        <h1>Groceries List</h1>
-      </header>
-    </>
+    <div>
+      <header>{title}</header>
+    </div>
   );
-}
+};
+export default Header;

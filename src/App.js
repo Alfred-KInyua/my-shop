@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 export default function App() {
   return (
     <>
-      <Header />
+      <Header title="Groceries from Alfred" />
       <Content />
       <Footer />
     </>
