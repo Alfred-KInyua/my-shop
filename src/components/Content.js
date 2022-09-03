@@ -20,11 +20,11 @@ export default function Content() {
     },
   ]);
   const handleIdChange = (id) => {
-    const listitems = items.map((item) =>
+    const lis = items.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
     );
-    setItems(listitems);
-    localStorage.setItem('shopping list', JSON.stringify(listitems));
+    setItems(lis);
+    localStorage.setItem('shopping list', JSON.stringify(lis));
   };
   const handleDelete = (id) => {
     const listitems = items.filter((myItems) => myItems.id !== id);
@@ -36,31 +36,38 @@ export default function Content() {
   return (
     <>
       <main>
-        <ul>
-          {items.map((myItems) => (
-            <li className="item" key={myItems.id}>
-              <input
-                type="checkbox"
-                checked={myItems.checked}
-                id="myinput"
-                onChange={() => handleIdChange(myItems.id)}
-              />
-              <label
-                onDoubleClick={() => handleIdChange(myItems.id)}
-                style={
-                  myItems.checked ? { textDecoration: 'line-through' } : null
-                }
-              >
-                {myItems.item}
-              </label>
-              <FaTrashAlt
-                role="button"
-                tabIndex="0"
-                onClick={() => handleDelete(myItems.id)}
-              />
-            </li>
-          ))}
-        </ul>
+        {items.length ? (
+          <ul>
+            {items.map((myItems) => (
+              <li className="item" key={myItems.id}>
+                <input
+                  type="checkbox"
+                  checked={myItems.checked}
+                  id="myinput"
+                  onChange={() => handleIdChange(myItems.id)}
+                />
+                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                <label
+                  onDoubleClick={() => handleIdChange(myItems.id)}
+                  style={
+                    myItems.checked ? { textDecoration: 'line-through' } : null
+                  }
+                >
+                  {myItems.item}
+                </label>
+                <FaTrashAlt
+                  role="button"
+                  tabIndex="0"
+                  onClick={() => handleDelete(myItems.id)}
+                />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p style={{ marginBottom: '10px', color: 'red' }}>
+            Your List is empty
+          </p>
+        )}
       </main>
     </>
   );
