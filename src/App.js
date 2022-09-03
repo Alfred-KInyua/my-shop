@@ -22,7 +22,9 @@ export default function App() {
     },
   ]);
   const handleIdChange = (id) => {
-    const lis = items.map((item) => (item.id === id ? { ...item, checked: !item.checked } : item));
+    const lis = items.map((item) =>
+      item.id === id ? { ...item, checked: !item.checked } : item
+    );
     setItems(lis);
     localStorage.setItem('shopping list', JSON.stringify(lis));
   };
