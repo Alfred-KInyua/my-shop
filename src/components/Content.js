@@ -1,38 +1,7 @@
-import React, { useState } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 
-export default function Content() {
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      checked: false,
-      item: 'sugar',
-    },
-    {
-      id: 2,
-      checked: false,
-      item: 'spice',
-    },
-    {
-      id: 3,
-      checked: false,
-      item: 'and everything nice',
-    },
-  ]);
-  const handleIdChange = (id) => {
-    const lis = items.map((item) =>
-      item.id === id ? { ...item, checked: !item.checked } : item
-    );
-    setItems(lis);
-    localStorage.setItem('shopping list', JSON.stringify(lis));
-  };
-  const handleDelete = (id) => {
-    const listitems = items.filter((myItems) => myItems.id !== id);
-
-    setItems(listitems);
-    localStorage.setItem('Filltred items', JSON.stringify(listitems));
-  };
-
+export default function Content({ items, handleDelete, handleIdChange }) {
   return (
     <>
       <main>
@@ -72,3 +41,13 @@ export default function Content() {
     </>
   );
 }
+
+// Content.defaultProps = {
+//   handleDelete: 'Handle delete required',
+//   handleIdChange: 'Handle change required',
+// };
+Content.propTypes = {
+  handleDelete: PropTypes.func.isRequired,
+  handleIdChange: PropTypes.func.isRequired,
+  items: PropTypes.shape.isRequired,
+};

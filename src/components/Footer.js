@@ -1,13 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function Footer() {
-  const data = new Date();
-  return (
-    <>
-      <footer>
-        Copyright &copy;
-        {data.getFullYear()}
-      </footer>
-    </>
-  );
-}
+const Footer = ({ length }) => (
+  <>
+    <footer>
+      <p>
+        {length}
+        List
+        {length === 1 || length === 0 ? ' item ' : ' items '}
+      </p>
+    </footer>
+  </>
+);
+export default Footer;
+
+Footer.propTypes = {
+  length: PropTypes.number.isRequired,
+};
