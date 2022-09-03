@@ -24,7 +24,15 @@ export default function Content() {
       item.id === id ? { ...item, checked: !item.checked } : item
     );
     setItems(listitems);
+    localStorage.setItem('shopping list', JSON.stringify(listitems));
   };
+  const handleDelete = (id) => {
+    const listitems = items.filter((myItems) => myItems.id !== id);
+
+    setItems(listitems);
+    localStorage.setItem('Filltred items', JSON.stringify(listitems));
+  };
+
   return (
     <>
       <main>
@@ -37,8 +45,19 @@ export default function Content() {
                 id="myinput"
                 onChange={() => handleIdChange(myItems.id)}
               />
-              <label htmlFor="myinput">{myItems.item}</label>
-              <FaTrashAlt role="button" tabIndex="0" />
+              <label
+                onDoubleClick={() => handleIdChange(myItems.id)}
+                style={
+                  myItems.checked ? { textDecoration: 'line-through' } : null
+                }
+              >
+                {myItems.item}
+              </label>
+              <FaTrashAlt
+                role="button"
+                tabIndex="0"
+                onClick={() => handleDelete(myItems.id)}
+              />
             </li>
           ))}
         </ul>
