@@ -21,10 +21,6 @@ export default function Content({ items, handleDelete, handleIdChange }) {
   );
 }
 
-// Content.defaultProps = {
-//   handleDelete: 'Handle delete required',
-//   handleIdChange: 'Handle change required',
-// };
 Content.propTypes = {
   handleDelete: PropTypes.func.isRequired,
   handleIdChange: PropTypes.func.isRequired,

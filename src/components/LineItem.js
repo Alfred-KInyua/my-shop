@@ -3,11 +3,10 @@ import { FaTrashAlt } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
 const LineItem = ({ myItems, handleDelete, handleIdChange }) => (
-  <li className="item" key={myItems.id}>
+  <li className="item">
     <input
       type="checkbox"
       checked={myItems.checked}
-      id="myinput"
       onChange={() => handleIdChange(myItems.id)}
     />
     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}

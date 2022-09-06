@@ -10,15 +10,8 @@ html {
 
 body {
   min-height: 100vh;
-  font-family:
-    'Roboto',
-    'Oxygen',
-    'Ubuntu',
-    'Cantarell',
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
+  font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -53,7 +46,7 @@ main {
   justify-content: flex-start;
   align-items: center;
   overflow-y: auto;
-  height: 90vh;
+  height: 80vh;
 }
 
 footer {
@@ -117,5 +110,60 @@ ul li::before {
 .item svg:focus,
 .item svg:hover {
   color: red;
+  outline: none;
+}
+.addForm {
+  display: flex;
+  align-items: center;
+}
+.addForm input[type='text'] {
+  flex-grow: 1;
+  min-height: 48px;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  max-width: (100%-50px);
+  font-size: 1rem;
+  outline: none;
+  margin: 5px;
+}
+button {
+  height: 48px;
+  min-width: 48px;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  background-color: aliceblue;
+  color: mediumblue;
+  cursor: pointer;
+}
+button:focus,
+button:hover {
+  color: white;
+  background-color: lightgreen;
+  outline: none;
+}
+.searchForm {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0.25rem;
+  padding: 0 1rem 0 0;
+  border-bottom: 1px solid #eee;
+}
+.searchForm label {
+  position: absolute;
+  left: -99999px;
+}
+.addForm label {
+  position: absolute;
+  left: -99999px;
+}
+
+.searchForm input[type='text'] {
+  flex-grow: 1;
+  max-width: 100%;
+  min-height: 48px;
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
   outline: none;
 }
