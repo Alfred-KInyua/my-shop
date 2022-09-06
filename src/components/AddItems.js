@@ -16,7 +16,6 @@ const AddItems = ({ newItem, setNewItem, handleSubmit }) => (
     <button type="submit" aria-label="Add item">
       <FaPlus />
     </button>
-    <p>{newItem}</p>
   </form>
 );
 
