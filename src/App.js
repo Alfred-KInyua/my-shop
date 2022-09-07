@@ -7,7 +7,7 @@ import Search from './components/Search';
 
 export default function App() {
   const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem('shopping list')) || []
+    JSON.parse(localStorage.getItem('shopping list')) || [],
   );
   const [newItem, setNewItem] = useState('');
   const [search, setSearch] = useState('');
@@ -24,9 +24,7 @@ export default function App() {
   };
 
   const handleIdChange = (id) => {
-    const lis = items.map((item) =>
-      item.id === id ? { ...item, checked: !item.checked } : item
-    );
+    const lis = items.map((item) => (item.id === id ? { ...item, checked: !item.checked } : item));
 
     setItems(lis);
   };
@@ -54,9 +52,7 @@ export default function App() {
       <Content
         handleDelete={handleDelete}
         handleIdChange={handleIdChange}
-        items={items.filter((obj) =>
-          obj.item.toLowerCase().includes(search.toLowerCase())
-        )}
+        items={items.filter((obj) => obj.item.toLowerCase().includes(search.toLowerCase()))}
       />
       <Footer length={items.length} />
     </>
