@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Content from './components/Content';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -7,32 +7,32 @@ import Search from './components/Search';
 
 export default function App() {
   const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem('shopping list')),
+    JSON.parse(localStorage.getItem('shopping list')) || []
   );
-
   const [newItem, setNewItem] = useState('');
   const [search, setSearch] = useState('');
 
-  const setAndSaveItems = (newItems) => {
-    setItems(newItems);
-    localStorage.setItem('shopping list', JSON.stringify(newItems));
-  };
+  useEffect(() => {
+    localStorage.setItem('shopping list', JSON.stringify(items));
+  }, [items]);
 
   const AddItem = (item) => {
     const id = items.length ? items[items.length - 1].id + 1 : 1;
     const myNewItem = { id, checked: false, item };
     const lis = [...items, myNewItem];
-    setAndSaveItems(lis);
+    setItems(lis);
   };
 
   const handleIdChange = (id) => {
-    const lis = items.map((item) => (item.id === id ? { ...item, checked: !item.checked } : item));
+    const lis = items.map((item) =>
+      item.id === id ? { ...item, checked: !item.checked } : item
+    );
 
-    setAndSaveItems(lis);
+    setItems(lis);
   };
   const handleDelete = (id) => {
     const lis = items.filter((myItems) => myItems.id !== id);
-    setAndSaveItems(lis);
+    setItems(lis);
   };
 
   const handleSubmit = (e) => {
@@ -54,7 +54,9 @@ export default function App() {
       <Content
         handleDelete={handleDelete}
         handleIdChange={handleIdChange}
-        items={items.filter((obj) => obj.item.toLowerCase().includes(search.toLowerCase()))}
+        items={items.filter((obj) =>
+          obj.item.toLowerCase().includes(search.toLowerCase())
+        )}
       />
       <Footer length={items.length} />
     </>
