@@ -6,15 +6,31 @@ import AddItems from './components/AddItems';
 import Search from './components/Search';
 
 export default function App() {
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem('shopping list')) || [],
-  );
+  const API_URL = 'http://localhost:3500/items';
+  const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState('');
   const [search, setSearch] = useState('');
+  const [fetchError, setFetchError] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem('shopping list', JSON.stringify(items));
-  }, [items]);
+    const fetchItems = async () => {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw Error(' did not receive expected data');
+        const listItems = await response.json();
+        setItems(listItems);
+        setFetchError(null);
+      } catch (error) {
+        setFetchError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    setTimeout(() => {
+      fetchItems();
+    }, 2000);
+  }, []);
 
   const AddItem = (item) => {
     const id = items.length ? items[items.length - 1].id + 1 : 1;
@@ -49,11 +65,18 @@ export default function App() {
         handleSubmit={handleSubmit}
       />
       <Search search={search} setSearch={setSearch} />
-      <Content
-        handleDelete={handleDelete}
-        handleIdChange={handleIdChange}
-        items={items.filter((obj) => obj.item.toLowerCase().includes(search.toLowerCase()))}
-      />
+
+      <main>
+        {isLoading && <p>Loading Items....</p>}
+        {fetchError && <p style={{ color: 'red' }}>{`Error${fetchError}`}</p>}
+        {!fetchError && !isLoading && (
+          <Content
+            handleDelete={handleDelete}
+            handleIdChange={handleIdChange}
+            items={items.filter((obj) => obj.item.toLowerCase().includes(search.toLowerCase()))}
+          />
+        )}
+      </main>
       <Footer length={items.length} />
     </>
   );
