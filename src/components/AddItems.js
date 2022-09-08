@@ -6,7 +6,6 @@ const AddItems = ({ newItem, setNewItem, handleSubmit }) => {
   const inputRef = useRef();
   return (
     <form className="addForm" onSubmit={handleSubmit}>
-      <label> Add Item</label>
       <input
         ref={inputRef}
         type="text"

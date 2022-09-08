@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const Search = ({ search, setSearch }) => (
   <form className="searchForm" onSubmit={(e) => e.preventDefault()}>
-    <label>Search</label>
     <input
       type="text"
       id="search"
